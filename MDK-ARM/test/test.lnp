@@ -1,9 +1,9 @@
 --cpu=Cortex-M4.fp --branchpatch=sdcomp-29491-629360
 "test\startup_stm32l476xx.o"
 "test\system_stm32l4xx.o"
-"test\main.o"
 "test\stm32l4xx_it.o"
 "test\stm32l4xx_hal_msp.o"
+"test\main.o"
 "test\stm32l4xx_hal_tim_ex.o"
 "test\stm32l4xx_hal_dma.o"
 "test\stm32l4xx_hal_dma_ex.o"

@@ -1,105 +1,39 @@
 
-/**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  ** This notice applies to any and all portions of this file
-  * that are not between comment pairs USER CODE BEGIN and
-  * USER CODE END. Other portions of this file, whether 
-  * inserted by the user or by software development tools
-  * are owned by their respective copyright owners.
-  *
-  * COPYRIGHT(c) 2018 STMicroelectronics
-  *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
-  ******************************************************************************
-  */
-/* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32l4xx_hal.h"
 #include "stm32l4xx.h"                  // Device header
 
 
-/* USER CODE BEGIN Includes */
 
-/* USER CODE END Includes */
-
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE BEGIN PV */
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE END PV */
-
-/* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 
-/* USER CODE BEGIN PFP */
-/* Private function prototypes -----------------------------------------------*/
 
-/* USER CODE END PFP */
 
-/* USER CODE BEGIN 0 */
-
-/* USER CODE END 0 */
-
-/**
-  * @brief  The application entry point.
-  *
-  * @retval None
-  */
 int main(void)
 {
 			
-		  GPIOA -> MODER |= (( 1 <<26) | (1 << 28) | (1 << 30));              // General purpose output mode Pin PA13, PA14, PA15
-			GPIOA -> OTYPER &= ~(( 1 << 13) | (1 << 14) | (1 << 15));           // Output Push Pull
-		  GPIOA -> OSPEEDR |= (( 1 <<26) | (1 << 28) | (1 << 30));            // OUTPUT HIGHSPEED
+		  
 	
 	
   HAL_Init();
 
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
-  /* Configure the system clock */
   SystemClock_Config();
+//	MX_GPIO_Init();
+			
+			RCC -> AHB2ENR |= ( 1 << 0 );                                               // Enable clock GPIOA
+	
+      GPIOA -> MODER |= (( 1 <<26) | (1 << 28) | (1 << 30));              // General purpose output mode Pin PA13, PA14, PA15
+			GPIOA -> MODER &= ~(( 1 <<27) | (1 << 29) | (1 << 31));
+	
+			GPIOA -> OTYPER &= ~(( 1 << 13) | (1 << 14) | (1 << 15));           // Output Push Pull
+	
+		  GPIOA -> OSPEEDR |= (( 1 <<27) | (1 << 29) | (1 << 31));            // OUTPUT HIGHSPEED
+	    GPIOA -> OSPEEDR &= ~(( 1 <<26) | (1 << 28) | (1 << 30));
+			
+			GPIOA -> PUPDR &= ~( (1 << 26) | (1 << 27) | ( 1 << 28) | (1 << 29) | ( 1 << 30) | ( 1 << 31));     // NO PULL UP NO PULL DOWN
+//			
 
-  /* USER CODE BEGIN SysInit */
-
-  /* USER CODE END SysInit */
-
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  /* USER CODE BEGIN 2 */
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
   while (1)
   {
 

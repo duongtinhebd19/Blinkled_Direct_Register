@@ -1,4 +1,4 @@
-test\main.o: ../Src/main.c
+test\main.o: ..\Src\main.c
 test\main.o: ../Inc/main.h
 test\main.o: C:/Users/Tinh HKVT19/STM32Cube/Repository/STM32Cube_FW_L4_V1.11.0/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h
 test\main.o: ../Inc/stm32l4xx_hal_conf.h
